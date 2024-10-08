@@ -28,4 +28,17 @@ public class ProductController {
         productList.add(product);
         return ResponseEntity.ok(productList);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<List> updateProduct(@PathVariable("id")String id, @RequestBody Product product)
+    {
+       for(Product p : productList){
+           if(p.getId().equals(id)){
+               productList.remove(p);
+           }
+       }
+        productList.add(product);
+       return ResponseEntity.ok(productList);
+    }
+
 }
