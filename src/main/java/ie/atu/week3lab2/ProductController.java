@@ -29,7 +29,7 @@ public class ProductController {
         return ResponseEntity.ok(productList);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateProduct/{id}")
     public ResponseEntity<List> updateProduct(@PathVariable("id")String id, @RequestBody Product product)
     {
        for(Product p : productList){
@@ -39,6 +39,17 @@ public class ProductController {
        }
         productList.add(product);
        return ResponseEntity.ok(productList);
+    }
+
+    @DeleteMapping("/deleteProduct/{id}")
+    public ResponseEntity<List> deleteProduct(@PathVariable String id)
+    {
+        for(Product p : productList) {
+            if (p.getId().equals(id)) {
+                productList.remove(p);
+            }
+        }
+        return ResponseEntity.ok(productList);
     }
 
 }
